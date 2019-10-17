@@ -1,0 +1,11 @@
+C:\Users\Umaiz\source\repos\AtmMachine\AtmMachine\bin\Debug\netcoreapp3.0\AtmMachine.exe
+C:\Users\Umaiz\source\repos\AtmMachine\AtmMachine\bin\Debug\netcoreapp3.0\AtmMachine.deps.json
+C:\Users\Umaiz\source\repos\AtmMachine\AtmMachine\bin\Debug\netcoreapp3.0\AtmMachine.runtimeconfig.json
+C:\Users\Umaiz\source\repos\AtmMachine\AtmMachine\bin\Debug\netcoreapp3.0\AtmMachine.runtimeconfig.dev.json
+C:\Users\Umaiz\source\repos\AtmMachine\AtmMachine\bin\Debug\netcoreapp3.0\AtmMachine.dll
+C:\Users\Umaiz\source\repos\AtmMachine\AtmMachine\bin\Debug\netcoreapp3.0\AtmMachine.pdb
+C:\Users\Umaiz\source\repos\AtmMachine\AtmMachine\obj\Debug\netcoreapp3.0\AtmMachine.AssemblyInfoInputs.cache
+C:\Users\Umaiz\source\repos\AtmMachine\AtmMachine\obj\Debug\netcoreapp3.0\AtmMachine.AssemblyInfo.cs
+C:\Users\Umaiz\source\repos\AtmMachine\AtmMachine\obj\Debug\netcoreapp3.0\AtmMachine.dll
+C:\Users\Umaiz\source\repos\AtmMachine\AtmMachine\obj\Debug\netcoreapp3.0\AtmMachine.pdb
+C:\Users\Umaiz\source\repos\AtmMachine\AtmMachine\obj\Debug\netcoreapp3.0\AtmMachine.csprojAssemblyReference.cache
