@@ -30,7 +30,7 @@ namespace AtmMachine
                     break;
             }
         }
-        public double deposit()
+        public void deposit()
         {
             Console.WriteLine("Enter amount to be deposited");
             double d_amt = Convert.ToDouble(Console.ReadLine());
@@ -42,21 +42,18 @@ namespace AtmMachine
             {
                 curr_balance = Math.Round((double)curr_balance + d_amt, 2);
                 Console.WriteLine("Deposited");
-                return curr_balance;
             }
             else if (t_acc == 2)
             {
                 sav_balance = Math.Round((double)sav_balance + d_amt, 2);
                 Console.WriteLine("Deposited");
-                return sav_balance;
             }
             else
             {
                 Console.WriteLine("Incorrect choice");
-                return curr_balance;
             }
         }
-        public double transfer()
+        public void transfer()
         {
             Console.WriteLine("Enter account number");
             long acc_no = Convert.ToInt64(Console.ReadLine());
@@ -73,22 +70,18 @@ namespace AtmMachine
                 if (t_acc == 1 && t_amt <= curr_balance)
                 {
                     curr_balance = Math.Round((double)curr_balance - t_amt, 2);
-                    return curr_balance;
                 }
                 else if (t_acc == 2 && t_amt <= sav_balance)
                 {
                     sav_balance = Math.Round((double)sav_balance - t_amt, 2);
-                    return sav_balance;
                 }
                 else
                 {
                     Console.WriteLine("Insufficient amount");
-                    return curr_balance;
                 }
             }
             else
                 Console.WriteLine("Incorrect PIN");
-            return sav_balance;
         }
         public void pinUpdate()
         {
@@ -105,7 +98,7 @@ namespace AtmMachine
                 Console.WriteLine("Incorrect Pin");
             }
         }
-        public double Amt(int withAmount)
+        public void Amt(int withAmount)
         {
             int twok = 0;
             do
@@ -158,11 +151,8 @@ namespace AtmMachine
                     }
                 }
             } while (withAmount != 0);
-            return curr_balance;
-            return sav_balance;
-
         }
-        public double withDraw()
+        public void withDraw()
         {
             Atm a = new Atm();
             int with_ch = 0;
@@ -171,7 +161,6 @@ namespace AtmMachine
             if (pin != sav_pin)
             {
                 Console.WriteLine("Incorrect PIN");
-                return curr_balance;
             }
             else
             {
@@ -195,8 +184,6 @@ namespace AtmMachine
                                 Amt(withAmount);
                                 Console.WriteLine("Collect the Money and Card");
                                 curr_balance = Math.Round((double)curr_balance - withAmount, 2);
-                                return curr_balance;
-
                             }
                             break;
                         case 2:
@@ -209,12 +196,10 @@ namespace AtmMachine
                                 Amt(withAmount);
                                 Console.WriteLine("Collect the Money and Card");
                                 sav_balance = Math.Round((double)sav_balance - withAmount, 2);
-                                return sav_balance;
                             }
                             break;
                         default:
                             Console.WriteLine("Enter valid choice");
-                            return sav_balance;
                             break;
 
                     }
@@ -222,10 +207,8 @@ namespace AtmMachine
                 else
                 {
                     Console.WriteLine("Enter amount in multiple of 100");
-                    return curr_balance;
                 }
             }
-            return curr_balance;
         }
         public void choice()
         {
