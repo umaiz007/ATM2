@@ -8,14 +8,14 @@ namespace AtmMachine
         public double sav_balance = new Random().Next(10000, 99999);
         public double curr_balance = new Random().Next(1000, 9999);
         public int t_acc;
-        public int t_amt;
+        public double t_amt;
         public int pin;
 
         public void displayBal()
         {
-            int bal_ch = 0;
-            bal_ch = Acc_type();
-            switch (bal_ch)
+            int ch = 0;
+            ch = Acc_type();
+            switch (ch)
             {
                 case 1:
                     Console.WriteLine("Your balance is {0}", curr_balance);
@@ -53,7 +53,7 @@ namespace AtmMachine
             Console.WriteLine("Enter account number");
             long acc_no = Convert.ToInt64(Console.ReadLine());
             Console.WriteLine("Enter Amount");
-            t_amt = Convert.ToInt32(Console.ReadLine());
+            t_amt = Convert.ToDouble(Console.ReadLine());
             t_acc = Acc_type();
             Console.WriteLine("Enter PIN");
             pin = Convert.ToInt32(Console.ReadLine());
@@ -62,10 +62,12 @@ namespace AtmMachine
                 if (t_acc == 1 && t_amt <= curr_balance)
                 {
                     curr_balance = Math.Round((double)curr_balance - t_amt, 2);
+                    Console.WriteLine("Money Transfered");
                 }
                 else if (t_acc == 2 && t_amt <= sav_balance)
                 {
                     sav_balance = Math.Round((double)sav_balance - t_amt, 2);
+                    Console.WriteLine("Money Transfered");
                 }
                 else
                 {
@@ -82,8 +84,16 @@ namespace AtmMachine
             if (pin == sav_pin)
             {
                 Console.WriteLine("Enter new PIN");
-                sav_pin = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("PIN updated");
+                int pinn = Convert.ToInt32(Console.ReadLine());
+                if (sav_pin == pinn)
+                {
+                    Console.WriteLine("New Pin cannot be same as old pin");
+                }
+                else
+                {
+                    sav_pin = pinn;
+                    Console.WriteLine("PIN updated");
+                }
             }
             else
             {
@@ -97,10 +107,9 @@ namespace AtmMachine
             {
                 if (withAmount >= 100)
                 {
-                    if (withAmount >= 100 && withAmount < 200)
+                    if (withAmount == 100)
                     {
-                        twok = (int)withAmount / 100;
-                        Console.WriteLine("{0} Notes of 100", twok);
+                        Console.WriteLine("1 Note of 100", twok);
                         break;
                     }
                     else if (withAmount >= 200 && withAmount < 500)
@@ -150,7 +159,7 @@ namespace AtmMachine
         public void withDraw()
         {
             Atm a = new Atm();
-            int with_ch = 0;
+            int ch = 0;
             Console.WriteLine("Enter the PIN");
             pin = Convert.ToInt32(Console.ReadLine());
             if (pin != sav_pin)
@@ -163,8 +172,8 @@ namespace AtmMachine
                 int withAmount = Convert.ToInt32(Console.ReadLine());
                 if (withAmount % 100 == 0)
                 {
-                    with_ch = Acc_type();
-                    switch (with_ch)
+                    ch = Acc_type();
+                    switch (ch)
                     {
                         case 1:
                             if (withAmount > curr_balance)
