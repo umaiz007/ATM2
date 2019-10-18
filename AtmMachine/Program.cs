@@ -5,18 +5,14 @@ namespace AtmMachine
     class Atm
     {
         int sav_pin = 1234;
-        public double sav_balance = new Random().Next(1000, 99999);
+        public double sav_balance = new Random().Next(10000, 99999);
         public double curr_balance = new Random().Next(1000, 9999);
         public int t_amt = 0;
         public int t_acc = 0;
         public void displayBal()
         {
             int bal_ch = 0;
-            Console.WriteLine("Choose account type");
-            Console.WriteLine("1. Current");
-            Console.WriteLine("2. Savings");
-            bal_ch = Convert.ToInt32(Console.ReadLine());
-
+            bal_ch = Acc_type();
             switch (bal_ch)
             {
                 case 1:
@@ -34,10 +30,7 @@ namespace AtmMachine
         {
             Console.WriteLine("Enter amount to be deposited");
             double d_amt = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Account type");
-            Console.WriteLine("1. Current");
-            Console.WriteLine("2. Savings");
-            t_acc = Convert.ToInt32(Console.ReadLine());
+            t_acc = Acc_type();
             if (t_acc == 1)
             {
                 curr_balance = Math.Round((double)curr_balance + d_amt, 2);
@@ -59,10 +52,7 @@ namespace AtmMachine
             long acc_no = Convert.ToInt64(Console.ReadLine());
             Console.WriteLine("Enter Amount");
             t_amt = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("From account type");
-            Console.WriteLine("1. Current");
-            Console.WriteLine("2. Savings");
-            t_acc = Convert.ToInt32(Console.ReadLine());
+            t_acc = Acc_type();
             Console.WriteLine("Enter PIN");
             int t_pin = Convert.ToInt32(Console.ReadLine());
             if (t_pin == sav_pin)
@@ -113,21 +103,15 @@ namespace AtmMachine
                     }
                     else if (withAmount >= 200 && withAmount < 500)
                     {
-                        twok = (int)withAmount / 200;
-                        Console.WriteLine("{0} Notes of 200", twok);
-                        withAmount = (int)withAmount % 200;
+                        withAmount = two_check(twok, withAmount);
                     }
                     else if (withAmount >= 100 && withAmount >= 200 && withAmount >= 500 && withAmount < 2000)
                     {
-                        twok = (int)withAmount / 500;
-                        Console.WriteLine("{0} Notes of 500", twok);
-                        withAmount = (int)withAmount % 500;
+                        withAmount = five_check(twok, withAmount);
+
                         if (withAmount >= 100 && withAmount >= 200 && withAmount < 500)
                         {
-
-                            twok = (int)withAmount / 200;
-                            Console.WriteLine("{0} Notes of 200", twok);
-                            withAmount = (int)withAmount % 200;
+                            withAmount = two_check(twok, withAmount);
                         }
                     }
                     else if (withAmount >= 100 && withAmount >= 200 && withAmount >= 500 && withAmount >= 2000)
@@ -137,20 +121,29 @@ namespace AtmMachine
                         withAmount = (int)withAmount % 2000;
                         if (withAmount >= 100 && withAmount >= 200 && withAmount >= 500 && withAmount < 2000)
                         {
-                            twok = (int)withAmount / 500;
-                            Console.WriteLine("{0} Notes of 500", twok);
-                            withAmount = (int)withAmount % 500;
+                            withAmount = five_check(twok, withAmount);
                             if (withAmount >= 100 && withAmount >= 200 && withAmount < 500)
                             {
-
-                                twok = (int)withAmount / 200;
-                                Console.WriteLine("{0} Notes of 200", twok);
-                                withAmount = (int)withAmount % 200;
+                                withAmount = two_check(twok, withAmount);
                             }
                         }
                     }
                 }
             } while (withAmount != 0);
+        }
+        public int two_check(int twok, int withAmount)
+        {
+            twok = (int)withAmount / 200;
+            Console.WriteLine("{0} Notes of 200", twok);
+            withAmount = (int)withAmount % 200;
+            return withAmount;
+        }
+        public int five_check(int twok, int withAmount)
+        {
+            twok = (int)withAmount / 500;
+            Console.WriteLine("{0} Notes of 500", twok);
+            withAmount = (int)withAmount % 500;
+            return withAmount;
         }
         public void withDraw()
         {
@@ -168,10 +161,7 @@ namespace AtmMachine
                 int withAmount = Convert.ToInt32(Console.ReadLine());
                 if (withAmount % 100 == 0)
                 {
-                    Console.WriteLine("Choose account type");
-                    Console.WriteLine("1. Current");
-                    Console.WriteLine("2. Savings");
-                    with_ch = Convert.ToInt32(Console.ReadLine());
+                    with_ch = Acc_type();
                     switch (with_ch)
                     {
                         case 1:
@@ -246,6 +236,14 @@ namespace AtmMachine
                 }
             } while (ch != 0);
 
+        }
+        public int Acc_type()
+        {
+            Console.WriteLine("Choose account type");
+            Console.WriteLine("1. Current");
+            Console.WriteLine("2. Savings");
+            int choi = Convert.ToInt32(Console.ReadLine());
+            return choi;
         }
     }
     public static class AtmMac
