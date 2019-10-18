@@ -7,8 +7,10 @@ namespace AtmMachine
         int sav_pin = 1234;
         public double sav_balance = new Random().Next(10000, 99999);
         public double curr_balance = new Random().Next(1000, 9999);
-        public int t_amt = 0;
-        public int t_acc = 0;
+        public int t_acc;
+        public int t_amt;
+        public int pin;
+
         public void displayBal()
         {
             int bal_ch = 0;
@@ -29,16 +31,16 @@ namespace AtmMachine
         public void deposit()
         {
             Console.WriteLine("Enter amount to be deposited");
-            double d_amt = Convert.ToDouble(Console.ReadLine());
+            double t_amt = Convert.ToDouble(Console.ReadLine());
             t_acc = Acc_type();
             if (t_acc == 1)
             {
-                curr_balance = Math.Round((double)curr_balance + d_amt, 2);
+                curr_balance = Math.Round((double)curr_balance + t_amt, 2);
                 Console.WriteLine("Deposited");
             }
             else if (t_acc == 2)
             {
-                sav_balance = Math.Round((double)sav_balance + d_amt, 2);
+                sav_balance = Math.Round((double)sav_balance + t_amt, 2);
                 Console.WriteLine("Deposited");
             }
             else
@@ -54,8 +56,8 @@ namespace AtmMachine
             t_amt = Convert.ToInt32(Console.ReadLine());
             t_acc = Acc_type();
             Console.WriteLine("Enter PIN");
-            int t_pin = Convert.ToInt32(Console.ReadLine());
-            if (t_pin == sav_pin)
+            pin = Convert.ToInt32(Console.ReadLine());
+            if (pin == sav_pin)
             {
                 if (t_acc == 1 && t_amt <= curr_balance)
                 {
@@ -76,8 +78,8 @@ namespace AtmMachine
         public void pinUpdate()
         {
             Console.WriteLine("Enter old PIN");
-            int o_pin = Convert.ToInt32(Console.ReadLine());
-            if (o_pin == sav_pin)
+            pin = Convert.ToInt32(Console.ReadLine());
+            if (pin == sav_pin)
             {
                 Console.WriteLine("Enter new PIN");
                 sav_pin = Convert.ToInt32(Console.ReadLine());
@@ -150,7 +152,7 @@ namespace AtmMachine
             Atm a = new Atm();
             int with_ch = 0;
             Console.WriteLine("Enter the PIN");
-            int pin = Convert.ToInt32(Console.ReadLine());
+            pin = Convert.ToInt32(Console.ReadLine());
             if (pin != sav_pin)
             {
                 Console.WriteLine("Incorrect PIN");
